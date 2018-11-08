@@ -1,0 +1,39 @@
+@layout('layouts.app')
+
+
+
+@section('header')
+<ul class="navbar-nav mr-auto">
+    <li class="nav-item"><a class="nav-link" href="/home"><span class="fa fa-home fa-lg"></span> Home</a></li>
+    <li class="nav-item"><a class="nav-link" href="/aboutus"><span class="fa fa-info fa-lg"></span> About</a></li>
+    <li class="nav-item active"><a class="nav-link" href="/menu"><span class="fa fa-list fa-lg"></span> Menu</a></li>
+    <li class="nav-item"><a class="nav-link" href="/contact"><span class="fa fa-address-card fa-lg"></span> Contact</a></li>
+</ul>
+@endsection
+
+@section('content')
+
+<!--Dishes Card-->
+<div class="row mt-5 mb-5">
+@each(dish in dishes)
+<div class="col-12 col-md-3 pl-5">
+<div class="card h-100 " style="width: 18rem;" >
+<img class="card-img-top" src={{dish.image}} alt="Card image cap">
+    <div class="card-body ">
+      <h5 class="card-title">{{dish.name}}</h5>
+      <p class="card-text">{{dish.description}}</p>
+    </div>
+    <div class="row">
+        <div class="col-6 pl-5">
+            <h4 class="card-title">{{dish.price}}</h4>
+        </div>
+        <div class="col-6 pr-5 mb-2">
+            <button type="button" class="btn btn-lg btn-block btn-primary" style="margin-top: auto;">Buy</button>
+        </div>
+    </div>
+</div>
+</div>
+@endeach
+</div>
+
+@endsection
