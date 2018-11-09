@@ -25,34 +25,50 @@
     <a class="nav-link" href="/contactus">
       <span class="fa fa-address-card fa-lg"></span> Contact</a>
   </li>
+  @if(!user)
   <li class="nav-item">
     <a class="nav-link" href="/login">
       <span class="fa fa-sign-in fa-lg"></span> Login</a>
   </li>
-  <li class="nav-item active">
+  <li class="nav-item">
     <a class="nav-link" href="/register">
       <span class="fa fa-user-plus fa-lg"></span> Register</a>
   </li>
+  @elseif(user)
+  <li class="nav-item">
+      <a class="nav-link" href="/">
+      <span class="fa fa-user fa-lg"></span> {{user.username}}</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link" href="/logout">
+      <span class="fa fa-sign-out fa-lg"></span> Logout</a>
+  </li>
+  @endif
 </ul>
 
 @endsection 
 
 @section('content')
 
-<div class="container">
-        <div class="row main">
+<div class="container mb-5">
+        <div class="main">
+            <div class="panel-heading">
+               <div class="panel-title text-center">
+                       <h1 class="title">Register Now</h1>
+                       <hr />
+                   </div>
+            </div> 
             <div class="main-login main-center">
-            <h5>Sign up once and watch any of our free demos.</h5>
-                <form class="" method="post" action="#">
+                <form class="form-horizontal" method="POST" action="/register">
                     
                     <div class="form-group">
-                        <label for="name" class="cols-sm-2 control-label">Your Name</label>
-                        <div class="cols-sm-10">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                <input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
+                            <label for="username" class="cols-sm-2 control-label">Username</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
+                                </div>
                             </div>
-                        </div>
                     </div>
 
                     <div class="form-group">
@@ -61,16 +77,6 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
                                 <input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="username" class="cols-sm-2 control-label">Username</label>
-                        <div class="cols-sm-10">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                                <input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
                             </div>
                         </div>
                     </div>
@@ -95,10 +101,12 @@
                         </div>
                     </div>
 
-                    <div class="form-group reg-button">
-                        <a href="https://deepak646.blogspot.com/" target="_blank" type="button" id="button" class="btn btn-primary btn-lg btn-block login-button">Register</a>
+                    <div class="form-group ">
+                        <input type="submit" class="btn btn-primary btn-lg btn-block login-button" value="Register"/>
                     </div>
-                    
+                    <div class="login-register">
+                        <a href="/login">Login</a>
+                     </div>
                 </form>
             </div>
         </div>

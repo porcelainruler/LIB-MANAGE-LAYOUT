@@ -7,7 +7,7 @@ var basename = path.basename(__filename);
 var env = process.env.NODE_ENV || "development";
 var db = {};
 
-var sequelize = new Sequelize('LIBMANAGE', 'root', 'Shaj9650@',
+var sequelize = new Sequelize('LibraryManagementSystem', 'root', 'Shaj9650@',
     {
         host: 'localhost',
         dialect: 'mysql',
@@ -26,7 +26,7 @@ var sequelize = new Sequelize('LIBMANAGE', 'root', 'Shaj9650@',
     });
 
 
-
+/*
 fs
     .readdirSync(__dirname)
     .filter(file => {
@@ -44,6 +44,7 @@ Object.keys(db).forEach(modelName => {
         db[modelName].associate(db);
     }
 });
+*/
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

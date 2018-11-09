@@ -18,6 +18,7 @@
     <a class="nav-link" href="/contactus">
       <span class="fa fa-address-card fa-lg"></span> Contact</a>
   </li>
+  @if(!user)
   <li class="nav-item">
     <a class="nav-link" href="/login">
       <span class="fa fa-sign-in fa-lg"></span> Login</a>
@@ -26,6 +27,16 @@
     <a class="nav-link" href="/register">
       <span class="fa fa-user-plus fa-lg"></span> Register</a>
   </li>
+  @elseif(user)
+  <li class="nav-item">
+      <a class="nav-link" href="/">
+      <span class="fa fa-user fa-lg"></span> {{user.username}}</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link" href="/logout">
+      <span class="fa fa-sign-out fa-lg"></span> Logout</a>
+  </li>
+  @endif
 </ul>
 
 @endsection 

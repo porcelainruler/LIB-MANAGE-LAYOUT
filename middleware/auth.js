@@ -1,12 +1,11 @@
-const User = require('../database/models/User');
+const User = require('../models/User');
 
-module.exports = (req , res , next) => {
-
-    User.findById(req.session.userId , (err , user) => {
-        if(err || !user) {
-            return res.redirect('/auth/login')
-        }
-
+var sessionChecker = (req, res, next) => {
+    if (req.session.user && req.cookies.user_sid) {
+        res.redirect('/dashboard');
+    } else {
         next();
-    })
-}
+    }    
+};
+
+module.exports = sessionChecker;

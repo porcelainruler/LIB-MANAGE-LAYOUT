@@ -1,87 +1,44 @@
-module.exports = (sequelize, DataTypes) => {
+var Sequelize = require('sequelize');
+
+var sequelize = new Sequelize('LibraryManagementSystem', 'root', 'Shaj9650@',
+    {
+        host: 'localhost',
+        dialect: 'mysql',
+        operatorsAliases: false,
+
+        pool: {
+            max: 5,
+            min: 0,
+            acquire: 30000,
+            idle: 10000
+        }
+        /*config.database,
+        config.username,
+        config.password,
+        config*/
+	});
+	
 	var User = sequelize.define(
 		"User",
 		{
-			id: {
-				type: DataTypes.STRING,
-				primaryKey: true
-			},
-
-			firstName: {
-				type: DataTypes.STRING,
+			username: {
+				type: Sequelize.STRING,
+				unique: true,
 				allowNull: false
 			},
-
-			middleName: {
-				type: DataTypes.STRING,
-				allowNull: true
-			},
-
-			lastName: {
-				type: DataTypes.STRING,
+			email: {
+				type: Sequelize.STRING,
+				unique: true,
 				allowNull: false
 			},
-
-			phoneNumber: {
-				type: DataTypes.STRING,
+			password: {
+				type: Sequelize.STRING,
 				allowNull: false,
 				validate: {
-					len: [10, 10],
-					isNumeric: true
+					len: [6, 14],
 				}
 			},
-
-			streetAddress: {
-				type: DataTypes.STRING,
-				allowNull: false
-			},
-
-			city: {
-				type: DataTypes.STRING,
-				allowNull: false
-			},
-
-			state: {
-				type: DataTypes.STRING,
-				allowNull: false,
-				validate: {
-					isAlpha: true
-				}
-			},
-
-			zipCode: {
-				type: DataTypes.INTEGER,
-				allowNull: false,
-				validate: {
-					isNumeric: true
-				}
-			},
-
-			emailAddress: {
-				type: DataTypes.STRING,
-				allowNull: false,
-				validate: {
-					isEmail: true
-				}
-			},
-
-			profilePicture: {
-				type: DataTypes.STRING,
-				allowNull: true,
-				defaultValue: "/assets/img/profile-img.jpg"
-			},
-
-			isEmployee: {
-				type: DataTypes.BOOLEAN,
-				allowNull: false,
-				defaultValue: false
-			},
-
-			createdAt: {
-				type: DataTypes.DATE,
-				field: "memberSince",
-				defaultValue: sequelize.literal("NOW()")
-			}
+			
 		},
 
 		{
@@ -91,5 +48,8 @@ module.exports = (sequelize, DataTypes) => {
 
 	require("./js/parentOrderAssociation.js")(User);
 
-	return User;
-};
+	sequelize.sync()
+    .then(() => console.log('users table has been successfully created, if one doesn\'t exist'))
+    .catch(error => console.log('This error occured', error));
+
+module.exports = User

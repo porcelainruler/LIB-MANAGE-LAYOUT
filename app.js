@@ -16,6 +16,10 @@ var loginRouter = require('./routes/login');
 var registerRouter = require('./routes/register');
 var usersRouter = require('./routes/users');
 
+var session = require('express-session')
+var auth = require('./middleware/auth');
+
+/*
 var Sequelize = require('sequelize')
 
 var sequelize = new Sequelize('LIBMANAGE', 'root', 'Shaj9650@' ,
@@ -32,7 +36,7 @@ var sequelize = new Sequelize('LIBMANAGE', 'root', 'Shaj9650@' ,
     }
     
   });
- 
+*/ 
 
 var app = express();
 
@@ -48,6 +52,31 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+  key: 'user_sid',
+  secret: 'somerandonstuffs',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+      expires: 600000
+  }
+}));
+
+app.use((req, res, next) => {
+  if (req.cookies.user_sid && !req.session.user) {
+      res.clearCookie('user_sid');        
+  }
+  next();
+});
+
+var sessionChecker = (req, res, next) => {
+  if (req.session.user && req.cookies.user_sid) {
+      res.redirect('/dashboard');
+  } else {
+      next();
+  }    
+};
+
 app.use('/', indexRouter);
 app.use('/menu', menuRouter);
 app.use('/aboutus', aboutRouter);
@@ -55,6 +84,16 @@ app.use('/contactus', contactRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/users', usersRouter);
+
+app.get('/logout', (req, res) => {
+  if (req.session.user && req.cookies.user_sid) {
+      res.clearCookie('user_sid');
+      res.redirect('/');
+  } else {
+      res.redirect('/login');
+  }
+});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
