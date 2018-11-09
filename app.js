@@ -5,6 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var edge = require('edge.js');
 var expressEdge = require('express-edge');
+
+var db = require("./models");
+
 var indexRouter = require('./routes/index');
 var menuRouter = require('./routes/menu');
 var aboutRouter = require('./routes/aboutus');

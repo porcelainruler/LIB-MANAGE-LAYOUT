@@ -1,0 +1,108 @@
+@layout('layouts.app') 
+
+@section('header')
+<ul class="navbar-nav mr-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="/">
+      <span class="fa fa-home fa-lg"></span> Home</a>
+  </li>
+  <li class="nav-item active">
+    <a class="nav-link" href="/aboutus">
+      <span class="fa fa-info fa-lg"></span> About</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/menu">
+      <span class="fa fa-list fa-lg"></span> Menu</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/contactus">
+      <span class="fa fa-address-card fa-lg"></span> Contact</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/login">
+      <span class="fa fa-sign-in fa-lg"></span> Login</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/register">
+      <span class="fa fa-user-plus fa-lg"></span> Register</a>
+  </li>
+</ul>
+
+@endsection 
+
+@section('content')
+
+<div class="container ">
+    <div class="row">
+        <div class="breadcrumb">
+            <div class="breadcrumb-item"><a href="/">Home</a></div>
+            <div class="breadcrumb-item active">About Us</div>
+        </div>
+        <div class="col-12">
+            <h3>About Us</h3>
+            <hr />
+        </div>
+    </div>
+    <div class="row row-content">
+        <div class="col-12 col-md-6">
+            <h2>Our History</h2>
+            <p>Started in 2010, Ristorante con Fusion quickly established itself as a culinary icon par excellence in Hong Kong. With its unique brand of world fusion cuisine that can be found nowhere else, it enjoys patronage from the A-list clientele in Hong Kong.  Featuring four of the best three-star Michelin chefs in the world, you never know what will arrive on your plate the next time you visit us.</p>
+            <p>The restaurant traces its humble beginnings to <em>The Frying Pan</em>, a successful chain started by our CEO, Mr. Peter Pan, that featured for the first time the world's best cuisines in a pan.</p>
+        </div>
+        <div class="col-12 col-md-5">
+            <div class="card">
+                <div class="class-header bg-primary text-white">Facts At a Glance</div>
+                <div class="card-body">
+                    <dl class="row p-1">
+                        <dt class="col-6">Started</dt>
+                        <dd class="col-6">3 Feb. 2013</dd>
+                        <dt class="col-6">Major Stake Holder</dt>
+                        <dd class="col-6">HK Fine Foods Inc.</dd>
+                        <dt class="col-6">Last Year's Turnover</dt>
+                        <dd class="col-6">$1,250,375</dd>
+                        <dt class="col-6">Employees</dt>
+                        <dd class="col-6">40</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body bg-faded">
+                    <blockquote class="blockquote">
+                        <p class="mb-0">You better cut the pizza in four pieces because
+                            I'm not hungry enough to eat six.</p>
+                        <footer class="blockquote-footer">Yogi Berra,
+                        <cite title="Source Title">The Wit and Wisdom of Yogi Berra,
+                            P. Pepe, Diversion Books, 2014</cite>
+                        </footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row ml-5">
+        <div class="text-responsive text-center font-weight-bold font-italic text-warning bg-info display-3 m-5">
+            Corporate Leadership
+        </div>
+    </div>
+        <div class="row media">
+                @each(chef in chefs)
+                <div key={{chef.id}} class="col-12">
+                    <div class="media" tag="li">
+                        <div class="media-left">
+                            <img src={{chef.image}} alt={{chef.name}} height="100" width="100" />
+                        </div>
+                        <div class="media-body ml-5">
+                            <h4 class="media-heading"> {{chef.name}} </h4>
+                            <p> {{chef.designation}} </p>
+                            <p> {{chef.description}} </p>
+                        </div>
+                    </div>
+                </div>
+                @endeach
+        </div>
+    
+</div>
+
+@endsection

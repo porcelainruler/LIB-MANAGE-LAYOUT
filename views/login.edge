@@ -36,28 +36,28 @@
 
 @section('content')
 
-<div class="container register">
+<div class="container register mb-5">
         <div class="row">
             <div class="col-md-12">
                 <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Login Form 1</a>
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Customer</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Login Form 2</a>
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Employee</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active text-align form-new" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <h3 class="register-heading">Login Form 1</h3>
+                        <h3 class="register-heading">Customer</h3>
                         <div class="row register-form">
                             <div class="col-md-12">
                                 <form method="post">
                                     <div class="form-group">
-                                        <input type="text" name="LGform1_user" class="form-control" placeholder="Your Email *" value="" required=""/>
+                                        <input type="text" name="username" class="form-control" placeholder="Your Username *" value="" required=""/>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="LGform1_pwd" class="form-control" placeholder="Your Password *" value="" required=""/>
+                                        <input type="password" name="password" class="form-control" placeholder="Your Password *" value="" required=""/>
                                     </div>
                                     <div class="form-group">
                                         <input type="submit" name="LGform1" class="btnContactSubmit" value="Login" />
@@ -68,15 +68,15 @@
                         </div>
                     </div>
                     <div class="tab-pane fade show text-align form-new" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <h3  class="register-heading">Login Form 2</h3>
+                        <h3  class="register-heading">Employee</h3>
                         <div class="row register-form">
                             <div class="col-md-12">
                                 <form method="post">
                                     <div class="form-group">
-                                        <input type="text" name="LGform2_user" class="form-control" placeholder="Your Email *" value="" required="" />
+                                        <input type="text" name="username" class="form-control" placeholder="Your Username *" value="" required="" />
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="LGform2_pwd" class="form-control" placeholder="Your Password *" value="" required=""/>
+                                        <input type="password" name="password" class="form-control" placeholder="Your Password *" value="" required=""/>
                                     </div>
                                     <div class="form-group">
                                         <input type="submit" name="LGform2" class="btnContactSubmit" value="Login" />

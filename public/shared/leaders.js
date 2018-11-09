@@ -1,8 +1,8 @@
 const LEADERS = [
     {
       id: 0,
-      name: 'Peter Pan',
-      image: './images/alberto.jpg',
+      name: 'Shubham',
+      image: './images/chefs/Shubham.jpg',
       designation: 'Chief Epicurious Officer',
       abbr: 'CEO',
       featured: false,
@@ -10,8 +10,8 @@ const LEADERS = [
     },
     {
       id: 1,
-      name: 'Dhanasekaran Witherspoon',
-      image: './images/alberto.jpg',
+      name: 'Ashish',
+      image: './images/chefs/Ashish.jpeg',
       designation: 'Chief Food Officer',
       abbr: 'CFO',
         featured: false,
@@ -19,8 +19,8 @@ const LEADERS = [
     },
     {
       id: 2,
-      name: 'Agumbe Tang',
-      image: './images/alberto.jpg',
+      name: 'Shrey-Karan',
+      image: './images/chefs/Shrey-Karan.jpeg',
       designation: 'Chief Taste Officer',
       abbr: 'CTO',
         featured: false,
@@ -28,10 +28,19 @@ const LEADERS = [
     },
     {
       id: 3,
-      name: 'Alberto Somayya',
-      image: './images/alberto.jpg',
+      name: 'Mohit',
+      image: './images/chefs/Mohit.jpeg',
       designation: 'Executive Chef',
       abbr: 'EC',
+      featured: true,
+      description: 'Award winning three-star Michelin chef with wide International experience having worked closely with whos-who in the culinary world, he specializes in creating mouthwatering Indo-Italian fusion experiences. He says, Put together the cuisines from the two craziest cultures, and you get a winning hit! Amma Mia!'
+    },
+    {
+      id: 4,
+      name: 'Vyomkesh',
+      image: './images/chefs/Vyomkesh.jpeg',
+      designation: 'Vice Executive Chef',
+      abbr: 'VEC',
       featured: true,
       description: 'Award winning three-star Michelin chef with wide International experience having worked closely with whos-who in the culinary world, he specializes in creating mouthwatering Indo-Italian fusion experiences. He says, Put together the cuisines from the two craziest cultures, and you get a winning hit! Amma Mia!'
     }
