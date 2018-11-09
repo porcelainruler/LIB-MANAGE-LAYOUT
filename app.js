@@ -7,6 +7,10 @@ var edge = require('edge.js');
 var expressEdge = require('express-edge');
 var indexRouter = require('./routes/index');
 var menuRouter = require('./routes/menu');
+var aboutRouter = require('./routes/aboutus');
+var contactRouter = require('./routes/contactus');
+var loginRouter = require('./routes/login');
+var registerRouter = require('./routes/register');
 var usersRouter = require('./routes/users');
 
 var Sequelize = require('sequelize')
@@ -43,6 +47,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/menu', menuRouter);
+app.use('/aboutus', aboutRouter);
+app.use('/contactus', contactRouter);
+app.use('/login', loginRouter);
+app.use('/register', registerRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
