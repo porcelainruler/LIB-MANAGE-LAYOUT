@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
+var Employee = require('../models/employee');
 var dishes = require('../public/shared/dishes')
 var chefs = require('../public/shared/leaders')
 
@@ -9,10 +10,6 @@ var chefs = require('../public/shared/leaders')
 router.get('/', function(req, res, next) {
   res.render('login');
 });
-
-router.get('/customer', function(req, res, next) {
-    res.end(User.findAll());
-  });
 
 router.post('/', (req, res) => {
   var username = req.body.username,
@@ -29,9 +26,32 @@ router.post('/', (req, res) => {
           res.redirect('/login');
       } else {
           req.session.user = user.dataValues;
+          res.redirect('/');
+          /*
           res.render('index' , {dishes: dishes, chefs: chefs, user:req.session.user});
-      }
+        */
+        }
   });
 });
+
+router.post('/employee', (req, res) => {
+    var username = req.body.username,
+        password = req.body.password;
+  
+      console.log( Username = username,Password = password);
+  
+  
+    Employee.findOne({ where: { username: username } }).then(function (employee) {
+        console.log(employee);
+        if (!employee) {
+            res.redirect('/login');
+        } else if (employee.password!=password) {
+            res.redirect('/login');
+        } else {
+            req.session.user = employee.dataValues;
+            res.redirect('/');
+        }
+    });
+  });
 
 module.exports = router;

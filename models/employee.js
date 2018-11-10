@@ -1,75 +1,47 @@
-module.exports = (sequelize, DataTypes) => {
+var Sequelize = require('sequelize');
+
+var sequelize = new Sequelize('LibraryManagementSystem', 'root', 'Shaj9650@',
+    {
+        host: 'localhost',
+        dialect: 'mysql',
+        operatorsAliases: false,
+
+        pool: {
+            max: 5,
+            min: 0,
+            acquire: 30000,
+            idle: 10000
+        }
+        /*config.database,
+        config.username,
+        config.password,
+        config*/
+	});
+
 	var Employee = sequelize.define(
 		"Employee",
 		{
-			id: {
-				type: DataTypes.STRING,
-				primaryKey: true
-			},
-
-			Name: {
-				type: DataTypes.STRING,
+			username: {
+				type: Sequelize.STRING,
+				unique: true,
 				allowNull: false
 			},
-
-			phoneNumber: {
-				type: DataTypes.STRING,
+			email: {
+				type: Sequelize.STRING,
+				unique: true,
+				allowNull: false,
+			},
+			password: {
+				type: Sequelize.STRING,
 				allowNull: false,
 				validate: {
-					len: [10, 10],
-					isNumeric: true
+					len: [6, 14],
 				}
-			},
-
-			streetAddress: {
-				type: DataTypes.STRING,
-				allowNull: false
-			},
-
-			city: {
-				type: DataTypes.STRING,
-				allowNull: false
-			},
-
-			state: {
-				type: DataTypes.STRING,
-				allowNull: false,
-				validate: {
-					isAlpha: true
-				}
-			},
-
-			zipCode: {
-				type: DataTypes.INTEGER,
-				allowNull: false,
-				validate: {
-					isNumeric: true
-				}
-			},
-
-			emailAddress: {
-				type: DataTypes.STRING,
-				allowNull: false,
-				validate: {
-					isEmail: true
-				}
-			},
-
-			profilePicture: {
-				type: DataTypes.STRING,
-				allowNull: true,
-				defaultValue: "./images/users/img0.jpg"
 			},
 
 			isEmployee: {
-				type: DataTypes.BOOLEAN,
+				type: Sequelize.BOOLEAN,
 				defaultValue: true
-			},
-
-			createdAt: {
-				type: DataTypes.DATE,
-				field: "memberSince",
-				defaultValue: sequelize.literal("NOW()")
 			}
 		},
 
@@ -80,5 +52,10 @@ module.exports = (sequelize, DataTypes) => {
 
 	require("./js/parentAddAssociation.js")(Employee);
 
+	sequelize.sync()
+    .then(() => console.log('employees table has been successfully created, if one doesn\'t exist'))
+    .catch(error => console.log('This error occured', error));
+
+	module.exports = Employee;
+
 	return Employee;
-};

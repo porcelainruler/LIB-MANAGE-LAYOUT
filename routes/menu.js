@@ -7,4 +7,5 @@ router.get('/', function(req, res, next) {
   res.render('menu', { dishes: dishes, user:req.session.user });
 });
 
+
 module.exports = router;

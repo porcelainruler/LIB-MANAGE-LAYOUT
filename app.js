@@ -10,6 +10,7 @@ var db = require("./models");
 
 var indexRouter = require('./routes/index');
 var menuRouter = require('./routes/menu');
+var addDishRouter = require('./routes/addDish');
 var aboutRouter = require('./routes/aboutus');
 var contactRouter = require('./routes/contactus');
 var loginRouter = require('./routes/login');
@@ -71,7 +72,15 @@ app.use((req, res, next) => {
 
 var sessionChecker = (req, res, next) => {
   if (req.session.user && req.cookies.user_sid) {
-      res.redirect('/dashboard');
+      res.redirect('/');
+  } else {
+      next();
+  }    
+};
+
+var employeeChecker = (req, res, next) => {
+  if (req.session.user && req.session.user.isEmployee) {
+      res.redirect('/adddish');
   } else {
       next();
   }    
@@ -79,6 +88,7 @@ var sessionChecker = (req, res, next) => {
 
 app.use('/', indexRouter);
 app.use('/menu', menuRouter);
+app.use('/adddish', addDishRouter);
 app.use('/aboutus', aboutRouter);
 app.use('/contactus', contactRouter);
 app.use('/login', loginRouter);

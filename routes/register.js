@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const User = require('../models/user');
+var Employee = require('../models/employee');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
