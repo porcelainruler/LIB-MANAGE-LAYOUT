@@ -6,7 +6,7 @@
 <ul class="navbar-nav mr-auto">
     <li class="nav-item"><a class="nav-link" href="/"><span class="fa fa-home fa-lg"></span> Home</a></li>
     <li class="nav-item"><a class="nav-link" href="/aboutus"><span class="fa fa-info fa-lg"></span> About</a></li>
-    <li class="nav-item active"><a class="nav-link" href="/menu"><span class="fa fa-list fa-lg"></span> Menu</a></li>
+    <li class="nav-item"><a class="nav-link" href="/menu"><span class="fa fa-list fa-lg"></span> Menu</a></li>
     @if(user.isEmployee)
     <li class="nav-item">
         <a class="nav-link" href="/adddish">
@@ -25,7 +25,7 @@
   </li>
   @elseif(user)
   @if(user && !user.isEmployee)
-  <li class="nav-item">
+  <li class="nav-item active">
         <a class="nav-link" href="/cart">
         <span class="fa fa-shopping-cart fa-lg"></span> Cart</a>
   </li>
@@ -70,7 +70,7 @@
             <h4 class="card-title">${{dish.price}}</h4>
         </div>
         <div class="col-6 pr-5 mb-2">
-        <button type="button" class="btn btn-lg btn-block btn-primary" style="margin-top: auto;"><a href="/menu/{{dish.dishid}}" style="color:aliceblue">Buy</a></button>
+        <button type="button" class="btn btn-lg btn-block btn-primary" style="margin-top: auto;"><a href="/menu/{{dish.id}}" style="color:aliceblue">Buy</a></button>
         </div>
     </div>
 </div>

@@ -1,54 +1,59 @@
-module.exports = (sequelize, DataTypes) => {
+var Sequelize = require('sequelize');
+var User = require("../models/user");
+
+var sequelize = new Sequelize('LibraryManagementSystem', 'root', 'Shaj9650@',
+    {
+        host: 'localhost',
+        dialect: 'mysql',
+        operatorsAliases: false,
+
+        pool: {
+            max: 5,
+            min: 0,
+            acquire: 30000,
+            idle: 10000
+        }
+        /*config.database,
+        config.username,
+        config.password,
+        config*/
+	});
+
 	var Dish = sequelize.define(
 		"Dish",
 		{
-			dishType: {
-				type: DataTypes.STRING,
-				allowNull: false
+			dishid: {
+				type: Sequelize.INTEGER,
+				primaryKey: true,
+				autoIncrement: true
 			},
-
-			industryIdentifier: {
-				type: DataTypes.STRING,
-				allowNull: true,
-				validate: {
-					isAlphanumeric: true
-				},
-				defaultValue: null
-			},
-
-			totalStock: {
-				type: DataTypes.INTEGER,
-				defaultValue: 0
-			},			
-
-			title: {
-				type: DataTypes.STRING,
-				allowNull: true,
-				defaultValue: null
-			},
-
-			chef: {
-				type: DataTypes.STRING,
-				allowNull: true,
-				defaultValue: null
-			},
-
-			summary: {
-				type: DataTypes.TEXT,
+			name: {
+				type: Sequelize.STRING,
 				allowNull: true,
 				defaultValue: null
 			},
 
 			image: {
-				type: DataTypes.STRING,
+				type: Sequelize.STRING,
 				allowNull: false,
 				defaultValue: "./images/buffet.png"
 			},
 
-			createdAt: {
-				type: DataTypes.DATE,
-				field: "firstArrivalDate",
-				defaultValue: sequelize.literal("NOW()")
+			category: {
+				type: Sequelize.STRING,
+				allowNull: false,
+				defaultValue: 'appetizer'
+			},
+
+			price: {
+				type: Sequelize.STRING,
+				allowedNull: true
+			},		
+
+			description: {
+				type: Sequelize.TEXT,
+				allowNull: true,
+				defaultValue: null
 			}
 		},
 
@@ -57,8 +62,20 @@ module.exports = (sequelize, DataTypes) => {
 		}
 	);
 
-	require("./js/parentAddAssociation.js")(Dish);
-	require("./js/parentOrderAssociation.js")(Dish);
+	Dish.associate = (models) => {
+		Dish.hasMany(models.User, {
+			foreignKey: "dishid",
+			as: "dishes",
+		});
+	  };
+
+
+	sequelize.sync()
+    .then(() => console.log('Dish table has been successfully created, if one doesn\'t exist'))
+    .catch(error => console.log('This error occured', error));
+
+
+
+	module.exports = Dish;
 
 	return Dish;
-};

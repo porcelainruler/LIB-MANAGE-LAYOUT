@@ -38,8 +38,14 @@
       <span class="fa fa-user-plus fa-lg"></span> Register</a>
   </li>
   @elseif(user)
+  @if(user && !user.isEmployee)
+  <li class="nav-item">
+        <a class="nav-link" href="/cart">
+        <span class="fa fa-shopping-cart fa-lg"></span> Cart</a>
+  </li>
+  @endif
   <li class="nav-item active">
-      <a class="nav-link" href="/">
+      <a class="nav-link" href="/user">
       <span class="fa fa-user fa-lg"></span> {{user.username}}</a>
   </li>
   <li class="nav-item">
@@ -54,36 +60,57 @@
 @section('content')
 
 <div class="container mb-5">
+    <div class="row">
+        <div class="breadcrumb">
+            <div class="breadcrumb-item"><a href="/">Home</a></div>
+            <div class="breadcrumb-item active">Add Dish</div>
+        </div>
+        <div class="col-12">
+            <h3>Add Dish</h3>
+            <hr />
+        </div>
+    </div>
     <div class="text-responsive text-center font-weight-bold font-italic text-warning bg-info display-3 m-5">
         ADD A DISH
     </div>
     <div class="login-form">
     <div class="main-div">
         <div class="panel">
-       <h2>Dish Addition</h2>
-       <p>Please enter your dish details</p>
-       </div>
-        <form id="Login">
+            <h2>Dish Addition</h2>
+            <p>Please enter your dish details</p>
+        </div>
+        <form id="AddDish" method="POST" action="/adddish">
     
             <div class="form-group">
     
-    
-                <input type="text" class="form-control" id="inputEmail" placeholder="Email Address">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Dish Name">
     
             </div>
     
             <div class="form-group">
     
-                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                <input type="text" class="form-control" id="category" name="category" placeholder="Category">
     
             </div>
-            <div class="forgot">
-            <a href="reset.html">Forgot password?</a>
-    </div>
-            <button type="submit" class="btn btn-primary">Login</button>
+
+            <div class="form-group">
+    
+                <input type="text" class="form-control" id="price" name="price" placeholder="Price">
+        
+            </div>
+
+            <div class="form-group">
+    
+                <input type="text-area" class="form-control" id="description" name="description" placeholder="Description">
+            
+            </div>
+            
+            
+            <button type="submit" class="btn btn-primary">ADD DISH</button>
     
         </form>
-        </div>
-    </div></div></div>
+    </div>
+    </div>
+</div>
 
 @endsection

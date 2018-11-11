@@ -10,6 +10,7 @@ var db = require("./models");
 
 var indexRouter = require('./routes/index');
 var menuRouter = require('./routes/menu');
+var cartRouter = require('./routes/cart');
 var addDishRouter = require('./routes/addDish');
 var aboutRouter = require('./routes/aboutus');
 var contactRouter = require('./routes/contactus');
@@ -91,9 +92,11 @@ app.use('/menu', menuRouter);
 app.use('/adddish', addDishRouter);
 app.use('/aboutus', aboutRouter);
 app.use('/contactus', contactRouter);
+app.use('/cart', cartRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/users', usersRouter);
+
 
 app.get('/logout', (req, res) => {
   if (req.session.user && req.cookies.user_sid) {

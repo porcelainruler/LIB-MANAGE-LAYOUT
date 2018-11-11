@@ -1,4 +1,5 @@
 var Sequelize = require('sequelize');
+var Dish = require('../models/dishes');
 
 var sequelize = new Sequelize('LibraryManagementSystem', 'root', 'Shaj9650@',
     {
@@ -21,6 +22,11 @@ var sequelize = new Sequelize('LibraryManagementSystem', 'root', 'Shaj9650@',
 	var User = sequelize.define(
 		"User",
 		{
+			userid: {
+				type: Sequelize.INTEGER,
+				primaryKey: true,
+				autoIncrement: true
+			},
 			username: {
 				type: Sequelize.STRING,
 				unique: true,
@@ -38,18 +44,31 @@ var sequelize = new Sequelize('LibraryManagementSystem', 'root', 'Shaj9650@',
 					len: [6, 14],
 				}
 			},
+			dishes: {
+				type: Sequelize.STRING,
+				allowNull: false,
+				defaultValue : ""
+				
+			}
 			
 		},
 
 		{
 			timestamps: false
-		}
+		},
+		
 	);
 
-	require("./js/parentOrderAssociation.js")(User);
+	User.associate = (models) => {
+		User.belongsTo(models.Dish, {
+			foreignKey: "dishid"
+		});
+	  };
+
+
 
 	sequelize.sync()
     .then(() => console.log('users table has been successfully created, if one doesn\'t exist'))
     .catch(error => console.log('This error occured', error));
 
-module.exports = User
+module.exports = User;

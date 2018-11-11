@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 var Employee = require('../models/employee');
-var dishes = require('../public/shared/dishes')
-var chefs = require('../public/shared/leaders')
 
 
 /* GET home page. */
