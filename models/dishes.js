@@ -25,12 +25,15 @@ var sequelize = new Sequelize('LibraryManagementSystem', 'root', 'Shaj9650@',
 			dishid: {
 				type: Sequelize.INTEGER,
 				primaryKey: true,
-				autoIncrement: true
+				autoIncrement: true,
 			},
 			name: {
 				type: Sequelize.STRING,
 				allowNull: true,
-				defaultValue: null
+				defaultValue: null,
+				validateValue: {
+					isAlphanumeric: true
+				}
 			},
 
 			image: {
@@ -42,18 +45,27 @@ var sequelize = new Sequelize('LibraryManagementSystem', 'root', 'Shaj9650@',
 			category: {
 				type: Sequelize.STRING,
 				allowNull: false,
-				defaultValue: 'appetizer'
+				defaultValue: 'appetizer',
+				validateValue: {
+					isAlphanumeric: true
+				}
 			},
 
 			price: {
 				type: Sequelize.STRING,
-				allowedNull: true
+				allowedNull: true,
+				validateValue: {
+					isNumeric: true
+				}
 			},		
 
 			description: {
 				type: Sequelize.TEXT,
 				allowNull: true,
-				defaultValue: null
+				defaultValue: null,
+				validateValue: {
+					isAlpha: true
+				}
 			}
 		},
 
