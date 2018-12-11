@@ -106,11 +106,47 @@
             </div>
             
             
-            <button type="submit" class="btn btn-primary">ADD DISH</button>
+            <button type="submit" class="btn btn-primary" onclick="alphanumeric(document.AddDish.name , document.AddDish.category)">ADD DISH</button>
     
         </form>
     </div>
     </div>
 </div>
+
+@endsection
+
+@section('scripts')
+
+<script>
+
+$("form").submit(function (e) {
+   var validationFailed = false;
+   // do your validation here ...
+   
+console.log($('form').find('input[name="name"]').val().match(letters))
+
+var letters = /^[0-9a-zA-Z]+$/; 
+
+if($('form').find('input[name="name"]').val().match(letters) && $('form').find('input[name="category"]').val().match(letters) && $('form').find('input[name="name"]').val().match("/^\d+$/")) 
+{ 
+alert('Your registration is correct '); 
+} 
+else
+{ 
+alert('Dish Name,Category can be alphanumeric only and Price can only be numeric'); 
+validationFailed = true;
+} 
+
+
+   if (validationFailed) {
+      e.preventDefault();
+      return false;
+   }
+});     
+
+
+console.log("Script running")
+
+</script>
 
 @endsection

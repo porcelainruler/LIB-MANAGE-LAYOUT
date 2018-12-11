@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var edge = require('edge.js');
 var expressEdge = require('express-edge');
+var expressValidator = require('express-validator');
 
 var db = require("./models");
 
@@ -121,7 +122,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  //res.render('error');
 });
 
 module.exports = app;

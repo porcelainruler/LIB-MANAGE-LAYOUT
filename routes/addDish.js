@@ -22,10 +22,10 @@ router.post('/', (req, res) => {
         price: req.body.price,
         description: req.body.description
     })
-    .then(dish => {
+    .then((dish) => {
         res.redirect('/');
     })
-    .catch(error => {
+    .catch((error) => {
         res.redirect('/adddish');
     });
   });
